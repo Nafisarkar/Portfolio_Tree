@@ -1,22 +1,19 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 import HomePage from "./pages/HomePage";
-import Navbar from "./components/ui/Navbar";
+import Navbar from "./components/layout/Navbar";
 import ExperiencePage from "./pages/ExperiencePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProjectPage from "./pages/ProjectPage";
-import Footer from "./components/ui/footer";
+import Footer from "./components/layout/Footer";
+import { useTheme } from "./hooks/useTheme";
+import { SITE_CONFIG } from "./constants";
 
 const App = () => {
+  const { theme } = useTheme();
+
   useEffect(() => {
-    document.title = "Nafisarkar | Portfolio";
-    const isDarkMode = localStorage.getItem("theme") === "dark";
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      localStorage.setItem("theme", "light");
-    }
+    document.title = SITE_CONFIG.title;
   }, []);
 
   return (

@@ -1,47 +1,26 @@
-import ProjectCard from "@/components/ui/ProjectCard";
+import ProjectCard from "../components/projects/ProjectCard";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { motion } from "framer-motion";
-import { fetchProjects } from "@/redux/projectSlice";
+import { motion } from "motion/react";
+import { fetchProjects } from "../redux/projectSlice";
+import { containerVariants, itemVariants } from "../constants/animations";
 
 const ProjectPage = () => {
   const dispatch = useDispatch();
   const {
     items: projects,
-    loading: pageLoading, // Ensure this matches the state name in your slice
+    loading: pageLoading,
     error,
   } = useSelector((state) => state.projects);
 
   useEffect(() => {
     if (!projects.length && !pageLoading && !error) {
       dispatch(fetchProjects());
-    } else if (projects.length === 0 && !error && pageLoading === undefined) {
-      dispatch(fetchProjects());
     }
   }, [dispatch, projects.length, pageLoading, error]);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.98 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 min-h-[calc(100vh-200px)] flex flex-col justify-start">
+    <main className="max-w-5xl mx-auto px-6 py-12 min-h-[calc(100vh-200px)]">
       {pageLoading ? null : (
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -87,7 +66,7 @@ const ProjectPage = () => {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 };
 
