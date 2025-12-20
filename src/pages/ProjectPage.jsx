@@ -28,7 +28,7 @@ const ProjectPage = () => {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-3xl mb-6 text-center md:text-start"
         >
-          My Projects
+          My Projects - {projects.length}
         </motion.h1>
       )}
 

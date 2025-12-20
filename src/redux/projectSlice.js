@@ -6,7 +6,10 @@ import { supabase } from "../utils/supabase";
 export const fetchProjects = createAsyncThunk(
   "projects/fetchProjects",
   async () => {
-    const { data, error } = await supabase.from("projects").select("*");
+    const { data, error } = await supabase
+      .from("projects")
+      .select("*")
+      .eq("visible", true);
     if (error) throw new Error(error.message);
 
     return data.reverse().map((project) => ({

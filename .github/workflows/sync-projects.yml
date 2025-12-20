@@ -24,7 +24,7 @@ jobs:
                 description: .description,
                 link: .html_url,
                 techstacks: (
-                  ([.language] + (.topics // []))
+                  ([.language])
                   | unique
                 )
               }
