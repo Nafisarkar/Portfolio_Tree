@@ -1,5 +1,5 @@
 export const NAV_LINKS = [
-  { label: "About", href: "/" },
+  { label: "Home", href: "/" },
   { label: "Project", href: "/project" },
   // { label: "Experience", href: "/experience" },
 ];

@@ -82,7 +82,7 @@ const HeroSection = () => {
             className="text-center md:text-left font-PublicSans max-w-md mt-4"
           >
             I am passionate about integrating functionality and design in
-            applications to create intuitive, user-friendly experiences.
+            applications to create intuitive, user friendly experiences.
           </motion.p>
         </motion.div>
 

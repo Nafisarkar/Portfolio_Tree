@@ -23,25 +23,37 @@ const AboutSection = () => {
         animate="visible"
       >
         <motion.p variants={paragraphItemVariants} className="text-justify">
-          I'm a computer science student passionate about creating seamless,
-          user-friendly experiences through thoughtful design and efficient
-          code. I love working at the intersection of frontend and backend
-          development, ensuring that applications are not only aesthetically
-          pleasing but also robust and scalable.
+          I’m a computer science student who genuinely just loves computers and
+          programming a little too much. I spend most of my time creating apps,
+          websites, and random silly little projects that absolutely nobody
+          asked for but I built them anyway. Sometimes they’re useful, sometimes
+          they’re just experiments that exist purely because I was curious at
+          2AM.
         </motion.p>
         <motion.p variants={paragraphItemVariants} className="text-justify">
-          Currently, I'm focused on expanding my skills in web development, with
-          particular interest in React and Node.js. Through my coursework and
-          personal projects, I've gained experience in UI/UX design principles,
-          responsive layouts, and modern JavaScript frameworks. I enjoy tackling
-          complex problems and finding elegant solutions that prioritize user
-          experience while maintaining code quality.
+          Most of my projects probably won’t change the world, but they
+          definitely changed my understanding (and occasionally my sleep
+          schedule). At the end of the day, I just love building stuff.
         </motion.p>
         <motion.p variants={paragraphItemVariants} className="text-justify">
-          When I'm not coding, you'll find me exploring new technologies, or
-          expanding my knowledge through online courses. Beyond tech, I enjoy
-          photography in my free time, playing video games, reading books, and
-          occasionally traveling to experience different cultures and
+          Beyond tech, I enjoy photography in my free time, playing video games
+          [
+          <a
+            className="underline"
+            href="https://www.warframe.com/"
+            target="_blank"
+          >
+            Warframe
+          </a>
+          ], reading books [
+          <a
+            className="underline"
+            href="https://www.rokomari.com/book/457591/osochorachor-2"
+            target="_blank"
+          >
+            অসচরাচর ২
+          </a>
+          ], and occasionally traveling to experience different cultures and
           perspectives. I'm always looking for opportunities to collaborate on
           projects that can make a positive impact.
         </motion.p>

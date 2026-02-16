@@ -13,26 +13,6 @@ const Footer = () => {
       <div className="max-w-5xl mx-auto px-6 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="font-RobotoMono text-xs">
-              Coded using{" "}
-              <a
-                href="https://code.visualstudio.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-primary hover:underline"
-              >
-                Visual Studio Code
-              </a>{" "}
-              and designed using{" "}
-              <a
-                href="https://www.figma.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-primary hover:underline"
-              >
-                Figma
-              </a>
-            </div>
             <div className="font-RobotoMono text-xs mt-1">
               &copy; {year} Shaon An Nafi
             </div>
