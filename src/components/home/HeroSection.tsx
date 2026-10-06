@@ -21,7 +21,7 @@ const HeroSection = () => {
 			</p>
 
 			<ul
-				className="animate-fade-up mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-5 lowercase"
+				className="animate-fade-up mt-4 flex flex-wrap items-center gap-x-4 gap-y-4 text-sm text-gray-5 lowercase"
 				style={{ animationDelay: "160ms" }}
 			>
 				{SOCIAL_LINKS.map((social) => {
@@ -33,7 +33,7 @@ const HeroSection = () => {
 								href={social.href}
 								target={isExternal ? "_blank" : undefined}
 								rel={isExternal ? "noopener noreferrer" : undefined}
-								className="group flex items-center gap-2 transition-colors hover:text-gray-9"
+								className="group -my-2 flex items-center gap-2 py-2 transition-colors hover:text-gray-9"
 							>
 								<span className="group-hover:animate-shake">
 									<Icon className="h-4 w-4" />

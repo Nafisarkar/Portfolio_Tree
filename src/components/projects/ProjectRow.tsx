@@ -35,7 +35,7 @@ const ProjectRow = ({ projectData }) => {
 			href={link}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group mx-4 block py-4"
+			className="group mx-4 block py-3"
 		>
 			<div className="flex items-start justify-between gap-4">
 				<h3 className="text-md lowercase text-gray-8">

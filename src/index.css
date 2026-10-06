@@ -110,6 +110,22 @@
 	animation: shake 0.5s ease-in-out 0.2s;
 }
 
+@keyframes scroll-hint {
+	0%,
+	100% {
+		transform: translateY(0);
+		opacity: 0.55;
+	}
+	50% {
+		transform: translateY(3px);
+		opacity: 1;
+	}
+}
+
+@utility animate-scroll-hint {
+	animation: scroll-hint 2s ease-in-out infinite;
+}
+
 @keyframes fade-up {
 	from {
 		opacity: 0;
@@ -145,6 +161,11 @@
 	.animate-fade-in {
 		animation: none;
 	}
+
+	.animate-scroll-hint {
+		animation: none;
+		opacity: 0.7;
+	}
 }
 
 @layer base {
@@ -155,6 +176,12 @@
 	body {
 		@apply bg-background text-foreground font-base text-base antialiased;
 		text-rendering: optimizeLegibility;
+	}
+
+	/* Visible, consistent keyboard focus. */
+	:focus-visible {
+		outline: 2px solid var(--gray-4);
+		outline-offset: 2px;
 	}
 }
 
