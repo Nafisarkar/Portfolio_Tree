@@ -1,0 +1,15 @@
+# Taste
+- When recreating/re-skinning to match a reference or inspiration site, wants high-fidelity adherence — explicitly asks to "keep it as same as the inspiration as possible" rather than applying own tweaks. Confidence: 0.75
+- Prefers minimal single-page layouts with no top bar/navigation chrome, favoring an uncluttered design over adding navigation elements. Confidence: 0.6
+- Dislikes hover/interaction animations that shift layout (e.g. animating width causing reflow) — wants transform-based, zero-reflow animations and `transition-colors` rather than `transition-all`. Confidence: 0.65
+- Prefers a single monospace typeface used site-wide (e.g. Space Mono) for body, headings, and accents — avoids mixing in separate display/handwritten fonts. Confidence: 0.6
+- Prefers sharp, square corners with no rounded corners anywhere in the UI (zeros out radius tokens / removes `rounded` classes). Confidence: 0.6
+- Cares about prose capitalization being meaningful — flags forced-lowercase styling when it mangles text (e.g. "2AM" → "2am", "I" → "i"), but this is stylistic/context-dependent rather than a blanket ban: has also asked for lowercase applied across a whole section. Confidence: 0.45
+- Prefers curated, edited content over exhaustive listings — wants only a handful of the most recent/impressive items shown, while still keeping a variety of categories/types represented. Confidence: 0.55
+- Prefers muted/neutral styling (plain gray text) for secondary metadata rather than colored accent highlights on it — moves things like category labels off the accent color. Confidence: 0.5
+- Wants body/prose text to fill the available column width — objects to narrow prose caps (e.g. `max-w-prose`) that leave a block of text wrapping well short of the container edge. Confidence: 0.55
+- Prefers recognizable brand/technology icons (Simple Icons) rendered alongside tech-stack names rather than plain text lists of technologies. Confidence: 0.55
+- Prefers minimal row separators over boxed cards in lists: thin bottom-border dividers between items rather than full borders around each card, and no trailing separator after the last item (nothing between the final row and the footer). Confidence: 0.55
+- Wants uniform, consistent spacing and alignment across all sections — same left/right margins and padding everywhere so every element lines up to one shared content column, and dislikes elements (e.g. card borders) that extend past their section's bounds. When a pattern is approved in one section, wants it propagated to the entire layout, not left isolated. Confidence: 0.85
+- Likes the assistant to proactively audit and refine UI/UX by consulting the design skill plus external research (spacing systems, accessibility, touch/reduced-motion) rather than only making the literal requested change. Confidence: 0.5
+- Wants horizontal rules/dividers and bordered rows to align exactly with the text edges (inset the border by the same margin as the content) rather than spanning the full column — objects to borders that "stick out" past the text. Confidence: 0.6

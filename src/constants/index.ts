@@ -1,9 +1,3 @@
-export const NAV_LINKS = [
-	{ label: "Home", href: "/" },
-	{ label: "Project", href: "/project" },
-	// { label: "Experience", href: "/experience" },
-];
-
 export const SOCIAL_LINKS = [
 	{
 		name: "GitHub",
@@ -21,23 +15,25 @@ export const SOCIAL_LINKS = [
 		icon: "FaDiscord",
 	},
 	{
-		name: "Instagram",
-		href: "https://www.instagram.com/_blindfox_/",
-		icon: "PiInstagramLogoFill",
-	},
-	{
-		name: "WakaTime",
-		href: "https://wakatime.com/@Nafisarkar",
-		icon: "SiDreamstime",
+		name: "Email",
+		href: "mailto:sarkarnafe@gmail.com",
+		icon: "FaEnvelope",
 	},
 ];
 
 export const CONTACT_LINKS = {
 	discord: "https://discord.com/users/_sakuno",
+	email: "mailto:sarkarnafe@gmail.com",
 	calendly: "https://calendly.com/sarkarnafe",
 };
 
 export const GITHUB_USERNAME = "Nafisarkar";
+
+// Shown until the live GitHub data loads; refreshed from the API when available.
+export const GITHUB_STATS_FALLBACK = {
+	repocount: 30,
+	gitfollowers: 20,
+};
 
 export const SITE_CONFIG = {
 	title: "Nafisarkar | Portfolio",

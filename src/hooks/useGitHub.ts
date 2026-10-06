@@ -1,35 +1,69 @@
 import { useEffect, useState } from "react";
-import { GITHUB_USERNAME } from "../constants";
+import { GITHUB_STATS_FALLBACK, GITHUB_USERNAME } from "../constants";
+
+const CACHE_KEY = "github-stats";
+const CACHE_TTL = 60 * 60 * 1000;
+
+const readCache = () => {
+	try {
+		const cached = JSON.parse(localStorage.getItem(CACHE_KEY) ?? "null");
+		if (cached && Date.now() - cached.savedAt < CACHE_TTL) return cached.stats;
+	} catch {
+		// ignore unreadable cache
+	}
+	return null;
+};
+
+const writeCache = (stats) => {
+	try {
+		localStorage.setItem(
+			CACHE_KEY,
+			JSON.stringify({ stats, savedAt: Date.now() }),
+		);
+	} catch {
+		// storage unavailable
+	}
+};
+
+let pending = null;
+const fetchStats = () => {
+	if (!pending) {
+		pending = fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
+			.then((res) =>
+				res.ok ? res.json() : Promise.reject(new Error("unavailable")),
+			)
+			.then((data) => ({
+				repocount: data.public_repos,
+				gitfollowers: data.followers,
+			}))
+			.finally(() => {
+				pending = null;
+			});
+	}
+	return pending;
+};
 
 export const useGitHub = () => {
-	const [repoDetails, setRepoDetails] = useState({
-		repocount: 0,
-		gitfollowers: 0,
-	});
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
+	const [repoDetails, setRepoDetails] = useState(
+		() => readCache() ?? GITHUB_STATS_FALLBACK,
+	);
 
 	useEffect(() => {
-		const fetchRepoDetails = async () => {
-			try {
-				const response = await fetch(
-					`https://api.github.com/users/${GITHUB_USERNAME}`,
-				);
-				if (!response.ok) throw new Error("Failed to fetch GitHub data.");
-				const data = await response.json();
-				setRepoDetails({
-					repocount: data.public_repos,
-					gitfollowers: data.followers,
-				});
-			} catch (err) {
-				console.error("Error fetching repository details:", err);
-				setError("Failed to fetch GitHub data.");
-			} finally {
-				setLoading(false);
-			}
+		if (readCache()) return;
+		let active = true;
+		fetchStats()
+			.then((stats) => {
+				if (!active) return;
+				setRepoDetails(stats);
+				writeCache(stats);
+			})
+			.catch(() => {
+				// keep fallback values when the API is rate limited
+			});
+		return () => {
+			active = false;
 		};
-		fetchRepoDetails();
 	}, []);
 
-	return { repoDetails, loading, error };
+	return { repoDetails };
 };

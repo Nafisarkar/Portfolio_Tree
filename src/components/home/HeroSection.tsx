@@ -1,137 +1,59 @@
 import { motion } from "motion/react";
 import { FaGithub } from "react-icons/fa";
-import { FaArrowRightLong, FaDiscord, FaLinkedin } from "react-icons/fa6";
-import { PiInstagramLogoFill } from "react-icons/pi";
-import { RiTailwindCssFill } from "react-icons/ri";
-import { SiDreamstime, SiExpress } from "react-icons/si";
-import { TbBrandReact } from "react-icons/tb";
-import { Button } from "@/components/ui/button";
-import profileImage from "../../assets/pf.svg";
-import { CONTACT_LINKS, SOCIAL_LINKS } from "../../constants";
-import {
-	buttonItemVariants,
-	buttonsContainerVariants,
-	iconItemVariants,
-	iconsContainerVariants,
-	paragraphItemVariants,
-	profileImageVariants,
-} from "../../constants/animations";
+import { FaDiscord, FaEnvelope, FaLinkedin } from "react-icons/fa6";
+import { SOCIAL_LINKS } from "../../constants";
 
 const iconMap = {
 	FaGithub: FaGithub,
 	FaLinkedin: FaLinkedin,
 	FaDiscord: FaDiscord,
-	PiInstagramLogoFill: PiInstagramLogoFill,
-	SiDreamstime: SiDreamstime,
+	FaEnvelope: FaEnvelope,
 };
+
+const fadeUp = (delay = 0) => ({
+	initial: { opacity: 0, y: 16 },
+	animate: { opacity: 1, y: 0 },
+	transition: { duration: 0.5, ease: "easeOut", delay },
+});
 
 const HeroSection = () => {
 	return (
-		<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center mb-16">
-			<motion.div
-				className="relative flex justify-center md:order-2"
-				variants={profileImageVariants}
-				initial="hidden"
-				animate="visible"
+		<section className="px-4">
+			<motion.h1 {...fadeUp()} className="text-2xl text-gray-8">
+				Shaon An Nafi
+			</motion.h1>
+			<motion.p
+				{...fadeUp(0.08)}
+				className="mt-2 text-sm lowercase text-gray-5"
 			>
-				<div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
-					<div className="overflow-hidden w-full h-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] z-10">
-						<img
-							src={profileImage}
-							alt="Profile"
-							className="h-full w-full bg-main-foreground object-cover scale-155"
-						/>
-					</div>
-					<div className="absolute top-1 left-16 animate-float-fast z-20 text-main">
-						<SiExpress size={28} />
-					</div>
-					<div className="absolute bottom-4 left-4 animate-float-slow z-20">
-						<TbBrandReact size={28} />
-					</div>
-					<div className="absolute bottom-8 right-2 animate-float z-20">
-						<RiTailwindCssFill size={28} />
-					</div>
-				</div>
-			</motion.div>
+				software engineer
+			</motion.p>
 
-			<div className="flex flex-col items-center md:items-start md:order-1 space-y-5">
-				<motion.div
-					initial="hidden"
-					animate="visible"
-					variants={{
-						visible: { transition: { staggerChildren: 0.1 } },
-					}}
-				>
-					<motion.span
-						variants={paragraphItemVariants}
-						className="inline-block text-xs font-base text-muted-foreground tracking-widest uppercase mb-2"
-					>
-						Software Engineer
-					</motion.span>
-					<motion.h1
-						variants={paragraphItemVariants}
-						className="font-heading text-4xl sm:text-5xl leading-tight"
-					>
-						Shaon An Nafi
-					</motion.h1>
-					<motion.p
-						variants={paragraphItemVariants}
-						className="text-sm text-muted-foreground leading-relaxed max-w-md mt-4"
-					>
-						I build apps, websites, and random projects at 2AM. Passionate about
-						functional design and intuitive user experiences.
-					</motion.p>
-				</motion.div>
-
-				<motion.div
-					className="flex flex-col sm:flex-row gap-3 w-full max-w-sm"
-					variants={buttonsContainerVariants}
-					initial="hidden"
-					animate="visible"
-				>
-					<motion.div variants={buttonItemVariants} className="w-full">
-						<Button
-							onClick={() => window.open(CONTACT_LINKS.discord, "_blank")}
-							className="w-full"
-						>
-							Contact Me <FaArrowRightLong className="ml-2" />
-						</Button>
-					</motion.div>
-					<motion.div variants={buttonItemVariants} className="w-full">
-						<Button
-							variant="neutral"
-							onClick={() => window.open(CONTACT_LINKS.calendly, "_blank")}
-							className="w-full"
-						>
-							Schedule a Meeting <FaArrowRightLong className="ml-2" />
-						</Button>
-					</motion.div>
-				</motion.div>
-
-				<motion.div
-					className="flex flex-row gap-5 pt-2"
-					variants={iconsContainerVariants}
-					initial="hidden"
-					animate="visible"
-				>
-					{SOCIAL_LINKS.map((social) => {
-						const Icon = iconMap[social.icon];
-						return (
-							<motion.a
-								key={social.name}
+			<motion.ul
+				{...fadeUp(0.16)}
+				className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-5 lowercase"
+			>
+				{SOCIAL_LINKS.map((social) => {
+					const Icon = iconMap[social.icon];
+					const isExternal = social.href.startsWith("http");
+					return (
+						<li key={social.name}>
+							<a
 								href={social.href}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-muted-foreground hover:text-foreground transition-colors"
-								variants={iconItemVariants}
+								target={isExternal ? "_blank" : undefined}
+								rel={isExternal ? "noopener noreferrer" : undefined}
+								className="group flex items-center gap-2 transition-colors hover:text-gray-9"
 							>
-								<Icon className="h-5 w-5" />
-							</motion.a>
-						);
-					})}
-				</motion.div>
-			</div>
-		</div>
+								{social.name}
+								<span className="group-hover:animate-shake">
+									<Icon className="h-4 w-4" />
+								</span>
+							</a>
+						</li>
+					);
+				})}
+			</motion.ul>
+		</section>
 	);
 };
 

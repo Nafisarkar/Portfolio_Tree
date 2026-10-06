@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(agent-browser:*)",
+      "Shell(for:*)",
+      "Shell(do:*)",
+      "Shell(done:*)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}

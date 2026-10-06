@@ -1,31 +1,36 @@
+import { ReactLenis } from "lenis/react";
+import { MotionConfig } from "motion/react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { ReactLenis } from "lenis/react";
-import { Provider } from "react-redux";
 import App from "./App";
-import store from "./redux/store";
+
+const reduceMotion =
+	window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
-		<ReactLenis
-			root
-			options={{
-				lerp: 0.08, // Much lower for ultra-smooth interpolation
-				duration: 2.2, // Longer duration for more graceful animation
-				smoothWheel: true,
-				smoothTouch: true,
-				touchMultiplier: 1.5,
-				wheelMultiplier: 0.6, // Lower for more controlled scrolling
-				normalizeWheel: true,
-				easing: (t) => Math.min(1, 1.001 - 2 ** (-10 * t)), // Exponential ease-out
-				infinite: false,
-				gestureOrientation: "vertical",
-			}}
-		>
-			<Provider store={store}>
+		<MotionConfig reducedMotion="user">
+			{reduceMotion ? (
 				<App />
-			</Provider>
-		</ReactLenis>
+			) : (
+				<ReactLenis
+					root
+					options={{
+						lerp: 0.08,
+						duration: 2.2,
+						easing: (t) => Math.min(1, 1.001 - 2 ** (-10 * t)),
+						wheelMultiplier: 0.6,
+						touchMultiplier: 1.5,
+						normalizeWheel: true,
+						smoothWheel: true,
+						syncTouch: true,
+						gestureOrientation: "vertical",
+					}}
+				>
+					<App />
+				</ReactLenis>
+			)}
+		</MotionConfig>
 	</StrictMode>,
 );
