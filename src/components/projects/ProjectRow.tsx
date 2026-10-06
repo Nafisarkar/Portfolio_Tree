@@ -38,11 +38,13 @@ const ProjectRow = ({ projectData }) => {
 			href={link}
 			target="_blank"
 			rel="noopener noreferrer"
-			className="group mx-4 flex items-start justify-between gap-4 py-4 transition-colors hover:bg-gray-1"
+			className="group mx-4 flex items-start justify-between gap-4 py-4"
 		>
 			<div className="min-w-0">
-				<h3 className="text-md lowercase text-gray-8 group-hover:underline group-hover:underline-offset-4">
-					{title}
+				<h3 className="text-md lowercase text-gray-8">
+					<span className="relative inline-block after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 after:ease-out group-hover:after:w-full">
+						{title}
+					</span>
 				</h3>
 				<p className="mt-2 max-w-prose text-sm text-gray-5">{description}</p>
 				{techsWithIcons.length > 0 && (
@@ -69,7 +71,7 @@ const ProjectRow = ({ projectData }) => {
 						{category}
 					</span>
 				)}
-				<FaGithub className="h-4 w-4 text-gray-5 transition-colors group-hover:text-white" />
+				<FaGithub className="h-4 w-4 text-gray-5" />
 			</div>
 		</a>
 	);

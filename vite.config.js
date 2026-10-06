@@ -23,6 +23,23 @@ export default defineConfig({
 	define: {
 		__COMMIT_HASH__: JSON.stringify(commitHash),
 	},
+	build: {
+		rollupOptions: {
+			output: {
+				manualChunks(id) {
+					if (!id.includes("node_modules")) return;
+					if (id.includes("react-icons")) return "icons";
+					if (id.includes("react-dom") || id.includes("/react/"))
+						return "react";
+					if (id.includes("react-router") || id.includes("scheduler"))
+						return "react";
+					if (id.includes("/motion")) return "motion";
+					if (id.includes("lenis")) return "lenis";
+					return "vendor";
+				},
+			},
+		},
+	},
 	resolve: {
 		alias: {
 			"@": path.resolve(__dirname, "./src"),
