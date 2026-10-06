@@ -22,3 +22,5 @@
 - Expects local development to behave the same as the deployed/live site without needing manual environment toggles (e.g. browser flags) — questions why an effect works on the demo site but requires a flag locally. Confidence: 0.5
 - Prefers minimal hover affordances — dislikes cards/rows changing background or text color on hover, wanting only a subtle cue like a title underline (`hover:underline`) and nothing else. Confidence: 0.5
 - Cares about page load performance and asks for optimizations (bundle/size reduction, avoiding render-blocking third-party resources); expects changes to be measured/verified rather than applied blindly. Confidence: 0.5
+- Tests the site in a mobile/small-screen viewport and expects responsive layouts to look good there, not just on desktop — repeatedly raises layout problems as observed on mobile. Confidence: 0.65
+- Expects layouts to hold up with variable content length — flags bugs that only appear with long titles/names (e.g. wrapped two-line titles) and wants row elements like icons/badges aligned to the first line rather than vertically centered across the wrapped text. Confidence: 0.4
