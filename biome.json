@@ -11,7 +11,7 @@
 	},
 	"javascript": {
 		"formatter": { "quoteStyle": "double" },
-		"globals": ["import", "__COMMIT_HASH__"]
+		"globals": ["import", "__COMMIT_HASH__", "__WAKATIME__"]
 	},
 	"assist": {
 		"enabled": true,

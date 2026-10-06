@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import projects from "../../data/projects";
 import ProjectRow from "./ProjectRow";
 
@@ -17,18 +16,13 @@ const ProjectsSection = () => {
 
 			<div className="flex flex-col">
 				{projects.map((project, i) => (
-					<motion.div
+					<div
 						key={project.id}
-						initial={{ opacity: 0, y: 12 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{
-							duration: 0.4,
-							ease: "easeOut",
-							delay: Math.min(i, 6) * 0.04,
-						}}
+						className="animate-fade-up"
+						style={{ animationDelay: `${Math.min(i, 6) * 40}ms` }}
 					>
 						<ProjectRow projectData={project} />
-					</motion.div>
+					</div>
 				))}
 			</div>
 		</section>

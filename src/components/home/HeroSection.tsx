@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { FaGithub } from "react-icons/fa";
 import { FaDiscord, FaEnvelope, FaLinkedin } from "react-icons/fa6";
 import { SOCIAL_LINKS } from "../../constants";
@@ -10,28 +9,20 @@ const iconMap = {
 	FaEnvelope: FaEnvelope,
 };
 
-const fadeUp = (delay = 0) => ({
-	initial: { opacity: 0, y: 16 },
-	animate: { opacity: 1, y: 0 },
-	transition: { duration: 0.5, ease: "easeOut", delay },
-});
-
 const HeroSection = () => {
 	return (
 		<section className="px-4">
-			<motion.h1 {...fadeUp()} className="text-2xl text-gray-8">
-				Shaon An Nafi
-			</motion.h1>
-			<motion.p
-				{...fadeUp(0.08)}
-				className="mt-2 text-sm lowercase text-gray-5"
+			<h1 className="animate-fade-up text-2xl text-gray-8">Shaon An Nafi</h1>
+			<p
+				className="animate-fade-up mt-2 text-sm lowercase text-gray-5"
+				style={{ animationDelay: "80ms" }}
 			>
 				software engineer
-			</motion.p>
+			</p>
 
-			<motion.ul
-				{...fadeUp(0.16)}
-				className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-5 lowercase"
+			<ul
+				className="animate-fade-up mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-5 lowercase"
+				style={{ animationDelay: "160ms" }}
 			>
 				{SOCIAL_LINKS.map((social) => {
 					const Icon = iconMap[social.icon];
@@ -52,7 +43,7 @@ const HeroSection = () => {
 						</li>
 					);
 				})}
-			</motion.ul>
+			</ul>
 		</section>
 	);
 };

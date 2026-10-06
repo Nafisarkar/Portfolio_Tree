@@ -1,7 +1,13 @@
 import { useState } from "react";
-import { FaCodeBranch } from "react-icons/fa6";
+import { FaCode, FaCodeBranch } from "react-icons/fa6";
 import { PiGithubLogoFill } from "react-icons/pi";
 import { useGitHub } from "../../hooks/useGitHub";
+
+const formatDuration = (seconds) => {
+	const hours = Math.floor(seconds / 3600);
+	const minutes = Math.floor((seconds % 3600) / 60);
+	return hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+};
 
 const Footer = () => {
 	const [year] = useState(new Date().getFullYear());
@@ -28,6 +34,19 @@ const Footer = () => {
 							<PiGithubLogoFill className="h-3.5 w-3.5 text-gray-4" />
 							{repoDetails.gitfollowers}
 						</span>
+						{__WAKATIME__ && (
+							<span
+								title={`coded ${formatDuration(__WAKATIME__.totalSeconds)} in the last 7 days${
+									__WAKATIME__.topLanguage
+										? ` · mostly ${__WAKATIME__.topLanguage}`
+										: ""
+								}`}
+								className="flex items-center gap-2"
+							>
+								<FaCode className="h-3.5 w-3.5 text-gray-4" />
+								{formatDuration(__WAKATIME__.totalSeconds)}
+							</span>
+						)}
 					</div>
 				</div>
 			</div>

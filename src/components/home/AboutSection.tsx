@@ -1,5 +1,3 @@
-import { motion } from "motion/react";
-
 const WHAT_I_DO = [
 	{
 		label: "Full-Stack Web Development",
@@ -11,36 +9,30 @@ const WHAT_I_DO = [
 	},
 ];
 
-const fadeUp = (delay = 0) => ({
-	initial: { opacity: 0, y: 16 },
-	animate: { opacity: 1, y: 0 },
-	transition: { duration: 0.5, ease: "easeOut", delay },
-});
-
 const AboutSection = () => {
 	return (
 		<section className="lowercase">
-			<motion.div {...fadeUp()} className="mx-4 mt-12 mb-3  pb-1">
+			<div className="animate-fade-up mx-4 mt-12 mb-3 pb-1">
 				<h2 className="text-md lowercase text-gray-8">about</h2>
-			</motion.div>
+			</div>
 
-			<motion.p
-				{...fadeUp(0.1)}
-				className="mt-4 px-4 text-sm leading-relaxed text-gray-5"
+			<p
+				className="animate-fade-up mt-4 px-4 text-sm leading-relaxed text-gray-5"
+				style={{ animationDelay: "100ms" }}
 			>
 				My work touches the whole stack, from React, TanStack Start, and React
 				Native to Node.js, Hono, Go, and Python backends. I'm picky about the
 				details, from spacing and states to edge cases and error handling.
-			</motion.p>
+			</p>
 
-			<motion.h3
-				{...fadeUp(0.18)}
-				className="mt-6 mb-3 px-4 text-sm text-gray-8"
+			<h3
+				className="animate-fade-up mt-6 mb-3 px-4 text-sm text-gray-8"
+				style={{ animationDelay: "180ms" }}
 			>
 				What I do
-			</motion.h3>
+			</h3>
 
-			<motion.dl {...fadeUp(0.22)} className="px-4">
+			<dl className="animate-fade-up px-4" style={{ animationDelay: "220ms" }}>
 				{WHAT_I_DO.map((item, i) => {
 					const isLast = i === WHAT_I_DO.length - 1;
 					return (
@@ -72,15 +64,15 @@ const AboutSection = () => {
 						</div>
 					);
 				})}
-			</motion.dl>
+			</dl>
 
-			<motion.p
-				{...fadeUp(0.28)}
-				className="mt-6 px-4 text-sm leading-relaxed text-gray-5"
+			<p
+				className="animate-fade-up mt-6 px-4 text-sm leading-relaxed text-gray-5"
+				style={{ animationDelay: "280ms" }}
 			>
 				Beyond tech: photography, video games, reading, and traveling. Always
 				looking for collaboration opportunities that make a positive impact.
-			</motion.p>
+			</p>
 		</section>
 	);
 };
