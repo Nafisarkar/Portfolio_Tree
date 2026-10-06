@@ -2,7 +2,7 @@ import { FaGithub } from "react-icons/fa6";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getTechIcon } from "../../constants/techIcons";
 
-const ProjectRow = ({ projectData, isLast }) => {
+const ProjectRow = ({ projectData }) => {
 	const isLoading = !projectData;
 
 	const {
@@ -19,7 +19,7 @@ const ProjectRow = ({ projectData, isLast }) => {
 
 	if (isLoading) {
 		return (
-			<div className="mx-4 flex items-start justify-between gap-4 border-b border-gray-2 py-4">
+			<div className="mx-4 flex items-start justify-between gap-4 py-4">
 				<div className="min-w-0 flex-1">
 					<Skeleton className="h-4 w-40" />
 					<Skeleton className="mt-4 h-3 w-full" />
@@ -38,7 +38,7 @@ const ProjectRow = ({ projectData, isLast }) => {
 			href={link}
 			target="_blank"
 			rel="noopener noreferrer"
-			className={`group mx-4 flex items-start justify-between gap-4 py-4 transition-colors hover:bg-gray-1 ${isLast ? "" : "border-b border-gray-2"}`}
+			className="group mx-4 flex items-start justify-between gap-4 py-4 transition-colors hover:bg-gray-1"
 		>
 			<div className="min-w-0">
 				<h3 className="text-md lowercase text-gray-8 group-hover:underline group-hover:underline-offset-4">

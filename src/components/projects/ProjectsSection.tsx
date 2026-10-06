@@ -5,7 +5,7 @@ import ProjectRow from "./ProjectRow";
 const ProjectsSection = () => {
 	return (
 		<section>
-			<div className="mx-4 mt-12 mb-3 border-b border-gray-2 pb-1">
+			<div className="mx-4 mt-12 mb-3 pb-1">
 				<h2 className="text-md lowercase text-gray-8">
 					projects{" "}
 					<span className="text-xs text-gray-4">{projects.length}</span>
@@ -27,10 +27,7 @@ const ProjectsSection = () => {
 							delay: Math.min(i, 6) * 0.04,
 						}}
 					>
-						<ProjectRow
-							projectData={project}
-							isLast={i === projects.length - 1}
-						/>
+						<ProjectRow projectData={project} />
 					</motion.div>
 				))}
 			</div>

@@ -20,10 +20,7 @@ const fadeUp = (delay = 0) => ({
 const AboutSection = () => {
 	return (
 		<section className="lowercase">
-			<motion.div
-				{...fadeUp()}
-				className="mx-4 mt-12 mb-3 border-b border-gray-2 pb-1"
-			>
+			<motion.div {...fadeUp()} className="mx-4 mt-12 mb-3  pb-1">
 				<h2 className="text-md lowercase text-gray-8">about</h2>
 			</motion.div>
 
@@ -38,25 +35,48 @@ const AboutSection = () => {
 
 			<motion.h3
 				{...fadeUp(0.18)}
-				className="mt-8 mb-4 px-4 text-sm text-gray-8"
+				className="mt-6 mb-3 px-4 text-sm text-gray-8"
 			>
 				What I do
 			</motion.h3>
 
-			<motion.dl {...fadeUp(0.22)} className="space-y-5 px-4">
-				{WHAT_I_DO.map((item) => (
-					<div key={item.label}>
-						<dt className="text-sm text-gray-8">{item.label}</dt>
-						<dd className="mt-1 text-sm leading-relaxed text-gray-5">
-							{item.description}
-						</dd>
-					</div>
-				))}
+			<motion.dl {...fadeUp(0.22)} className="px-4">
+				{WHAT_I_DO.map((item, i) => {
+					const isLast = i === WHAT_I_DO.length - 1;
+					return (
+						<div key={item.label} className="group relative pb-3 pl-5">
+							<span
+								aria-hidden="true"
+								className={`absolute left-0 w-px bg-gray-3 ${
+									isLast ? "top-0 h-[0.9em]" : "top-0 bottom-0"
+								}`}
+							/>
+							<span
+								aria-hidden="true"
+								className="absolute left-0 top-[0.75em] h-px w-3 bg-gray-3"
+							/>
+							<dt className="text-sm text-gray-8 transition-colors group-hover:text-white">
+								{item.label}
+							</dt>
+							<dd className="relative mt-1 pl-5 text-sm leading-relaxed text-gray-5">
+								<span
+									aria-hidden="true"
+									className="absolute left-0 top-0 h-[0.75em] w-px bg-gray-3"
+								/>
+								<span
+									aria-hidden="true"
+									className="absolute left-0 top-[0.75em] h-px w-3 bg-gray-3"
+								/>
+								{item.description}
+							</dd>
+						</div>
+					);
+				})}
 			</motion.dl>
 
 			<motion.p
 				{...fadeUp(0.28)}
-				className="mt-8 px-4 text-sm leading-relaxed text-gray-5"
+				className="mt-6 px-4 text-sm leading-relaxed text-gray-5"
 			>
 				Beyond tech: photography, video games, reading, and traveling. Always
 				looking for collaboration opportunities that make a positive impact.

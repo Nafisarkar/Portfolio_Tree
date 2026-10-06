@@ -11,7 +11,10 @@ const Footer = () => {
 		<footer className="w-full">
 			<div className="max-w-screen-md mx-auto px-4 pb-8">
 				<div className="mt-12 flex flex-wrap justify-between gap-2 px-4 text-sm text-gray-5 sm:flex-nowrap">
-					<p className="lowercase">&copy; {year} shaon an nafi</p>
+					<p className="lowercase">
+						&copy; {year} shaon an nafi
+						<span className="text-gray-4"> · {__COMMIT_HASH__}</span>
+					</p>
 
 					<div className="flex flex-wrap items-center gap-x-4 gap-y-1">
 						<span

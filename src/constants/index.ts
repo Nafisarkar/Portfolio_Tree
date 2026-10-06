@@ -15,7 +15,7 @@ export const SOCIAL_LINKS = [
 		icon: "FaDiscord",
 	},
 	{
-		name: "Email",
+		name: "mail",
 		href: "mailto:sarkarnafe@gmail.com",
 		icon: "FaEnvelope",
 	},

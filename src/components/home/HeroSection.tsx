@@ -44,10 +44,10 @@ const HeroSection = () => {
 								rel={isExternal ? "noopener noreferrer" : undefined}
 								className="group flex items-center gap-2 transition-colors hover:text-gray-9"
 							>
-								{social.name}
 								<span className="group-hover:animate-shake">
 									<Icon className="h-4 w-4" />
 								</span>
+								{social.name}
 							</a>
 						</li>
 					);
