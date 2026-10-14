@@ -94,7 +94,6 @@ export default defineConfig(async ({ mode }) => {
 						if (id.includes("react-router") || id.includes("scheduler"))
 							return "react";
 						if (id.includes("/motion")) return "motion";
-						if (id.includes("lenis")) return "lenis";
 						return "vendor";
 					},
 				},

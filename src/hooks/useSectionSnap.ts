@@ -1,4 +1,3 @@
-import { useLenis } from "lenis/react";
 import { useEffect, useRef } from "react";
 
 /**
@@ -6,13 +5,8 @@ import { useEffect, useRef } from "react";
  * Scrolling inside the projects stays free in both directions — snapping only
  * happens when a scroll crosses between the two sections.
  *
- * Native CSS scroll-snap can't drive this: Lenis owns the scroll
- * programmatically, so the browser never settles and the two fight. Routing it
- * through Lenis (where present) keeps a single clean motion; touch devices
- * scroll natively instead, so the snap falls back to a native smooth scroll.
- *
  * Keying off the input gesture rather than the scroll position means the snap
- * starts as soon as the visitor stops, instead of waiting for smoothing.
+ * fires as soon as the visitor stops.
  */
 /** Pixels of movement needed before a gesture counts as intentional. */
 const SNAP_THRESHOLD = 20;
@@ -24,23 +18,17 @@ const sectionTops = () =>
 	);
 
 export const useSectionSnap = () => {
-	const lenis = useLenis();
 	const lastSettled = useRef(0);
 	const timer = useRef(0);
 
 	useEffect(() => {
 		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-		// With Lenis the animated scroll lags the gesture, so the intended
-		// position is the right one to decide from.
-		const position = () =>
-			lenis ? (lenis.targetScroll ?? lenis.scroll) : window.scrollY;
-
 		const settle = () => {
 			const points = sectionTops();
 			if (points.length < 2) return;
 
-			const y = position();
+			const y = window.scrollY;
 			const last = points[points.length - 1];
 
 			// Everything from the start of the final section down is free.
@@ -61,14 +49,7 @@ export const useSectionSnap = () => {
 
 			if (target === undefined || Math.abs(target - y) < 2) return;
 
-			if (lenis) {
-				lenis.scrollTo(target, {
-					duration: 0.6,
-					easing: (t) => 1 - 2 ** (-10 * t),
-				});
-			} else {
-				window.scrollTo({ top: target, behavior: "smooth" });
-			}
+			window.scrollTo({ top: target });
 			lastSettled.current = target;
 		};
 
@@ -87,5 +68,5 @@ export const useSectionSnap = () => {
 				window.removeEventListener(event, onGestureEnd);
 			}
 		};
-	}, [lenis]);
+	}, []);
 };
